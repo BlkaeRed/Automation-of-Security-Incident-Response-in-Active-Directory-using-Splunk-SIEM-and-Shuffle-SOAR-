@@ -15,12 +15,19 @@ Invoke-AtomicRedTeam (for testing the environment)
 # Acquired skills
 
 AWS usage for vm hosting
+
 Creation and managing simple Active Directory Domain
+
 Setting up  and configuring Splunk for alert generation
+
 Creation of custom alert rules for Splunk
+
 Setting up hosts in both Windows and Linux enviornment to send logs to Splunk
+
 Automating part of incident response with Shuffle (Sending messages to Shuffle and sending emails to Gmail with option of react to incident)
+
 Integration of multiple security tools for better monitoring and protection
+
 Installing and configuring Sysmon for specific environmental need
 
 # Project
