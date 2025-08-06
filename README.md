@@ -1,4 +1,4 @@
-# Introduction
+<img width="489" height="180" alt="Zrzut ekranu 2025-06-09 150538" src="https://github.com/user-attachments/assets/7264b5ec-a758-4da0-8f8b-b7f264649a42" /># Introduction
 
 This project involved building an automated system for real-time incident alerting and response across both Windows (specifically Active Directory Domain Controllers and hosts) and Linux environments. It consists of several EC2 instances hosting a Splunk server, a Domain Controller, and two monitored hosts. The system makes use of free and open-source tools, with Splunk serving as the SIEM platform for incident analysis and alert generation and Sysmon and Syslog which are used for detailed log collection. Additional tools include Shuffle, which enables automated responses to alerts, such as sending dedicated messages or emails to a SOC analyst via Slack or Gmail, with option to react to incident via disabling the user. I tested this system against two types of attacks: unauthorized access from an unknown IP address to one of the endpoints, and a potential port scanning, simulated using the Invoke-AtomicRedTeam framework. The end result is highly effective system for monitoring hosts, alerting and reacting to potentional incidents and overall day-to-day work in SOC environment.
 
@@ -132,12 +132,37 @@ Now to create alert unknown/unauthorized access I used this query and simulated 
 
 Explaination of alert:
 Event code 4624 represents succesful login->what I wanted to detect 
-Logon_Type 7 or 10 represent either logging back into already logged session (7) or connecting remotly to host (10)-> both can be seen during remote connections
-Source_Network_Address!=....-> I only want to alert when somebody outside of network (blocked addresses are my personal public IP) connects, "-" is there to only check connections with source address present
-stats count by .... -> used to extract only relevant information, in other words, who connects, when did they connect and to what host and user
 
-Next, to make it into alert, I presses "Save as->Alert" option
-<img width="945" height="600" alt="obraz" src="https://github.com/user-attachments/assets/4dad2fb3-30ad-4e98-b98d-ab6a1c9e25cd" />
+Logon_Type 7 or 10 represent either logging back into already logged session (7) or connecting remotly to host (10)-> both can be seen during remote connections
+
+Source_Network_Address!=....-> I only want to alert when somebody outside of network (blocked addresses are my personal public IP) connects, "-" is there to only check connections with source address present
+
+stats count by .... -> used to extract only relevant information, in other words, who connects, when they did and to what host and user
+
+Next, to make it into alert, I presses "Save as->Alert" option, I set it up with cronjob option to trigger alert every one minute if event happend in span of 1 hour. All of this was purely for testing purposes and should not be done in professional settings:
+<img width="993" height="600" alt="obraz" src="https://github.com/user-attachments/assets/1afd7c92-af48-44ba-8b94-2f478ee25801" />
+
+At the end I also added webhook, which will be used later with Shuffler for automatic incident response:
+<img width="945" height="333" alt="obraz" src="https://github.com/user-attachments/assets/8cb0145e-c646-4cbe-a7a4-f35f03ebbfef" />
+
+Last thing to do was to check if the alerts trigger when needed and fortunatly they did:
+<img width="1918" height="361" alt="Zrzut ekranu 2025-06-02 161447" src="https://github.com/user-attachments/assets/eceefe67-cc65-482a-bf29-3928b8db73d1" />
+
+Next, I configured SplunkForwarder for my Linux server:
+I mostly used this blog for help with configuration https://iritt.medium.com/setting-up-the-splunk-universal-forwarder-on-kali-linux-for-your-cybersecurity-home-lab-c153d19215dc
+
+In the same way as hkdomain-ad index, I created hk-linux index used for all logs from my Linux server
+Next I installed the SplunkForwarder, started it and added my Splunk server using splunk add forward-server command
+After that, I added inputs.conf into /opt/splunkforwarder/etc/system/local/ directory with following content:
+<img width="378" height="114" alt="Zrzut ekranu 2025-06-09 150519" src="https://github.com/user-attachments/assets/c1eda50b-2cf0-4f5c-bd36-33a3357bdeae" />
+
+And this is content of /opt/splunkforwarder/etc/system/local/outputs.conf after adding the forward-server:
+<img width="489" height="180" alt="Zrzut ekranu 2025-06-09 150538" src="https://github.com/user-attachments/assets/670a8e47-57a9-4595-91cf-0c608d01bd7c" />
+
+Last thing do to was checking if the setup works, so I used query for index hk-linux:
+<img width="1888" height="863" alt="Zrzut ekranu 2025-06-09 151011" src="https://github.com/user-attachments/assets/ac4d0ff7-f968-485f-b7a4-e09661a0541c" />
+
+And it worked so, initial Splunk setup is done.
 
 
 
