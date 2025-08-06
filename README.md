@@ -1,4 +1,4 @@
-<img width="489" height="180" alt="Zrzut ekranu 2025-06-09 150538" src="https://github.com/user-attachments/assets/7264b5ec-a758-4da0-8f8b-b7f264649a42" /># Introduction
+# Introduction
 
 This project involved building an automated system for real-time incident alerting and response across both Windows (specifically Active Directory Domain Controllers and hosts) and Linux environments. It consists of several EC2 instances hosting a Splunk server, a Domain Controller, and two monitored hosts. The system makes use of free and open-source tools, with Splunk serving as the SIEM platform for incident analysis and alert generation and Sysmon and Syslog which are used for detailed log collection. Additional tools include Shuffle, which enables automated responses to alerts, such as sending dedicated messages or emails to a SOC analyst via Slack or Gmail, with option to react to incident via disabling the user. I tested this system against two types of attacks: unauthorized access from an unknown IP address to one of the endpoints, and a potential port scanning, simulated using the Invoke-AtomicRedTeam framework. The end result is highly effective system for monitoring hosts, alerting and reacting to potentional incidents and overall day-to-day work in SOC environment.
 
@@ -164,8 +164,10 @@ Last thing do to was checking if the setup works, so I used query for index hk-l
 
 And it worked so, initial Splunk setup is done.
 
+<img width="457" height="520" alt="Zrzut ekranu 2025-06-13 195655" src="https://github.com/user-attachments/assets/12041c83-d34f-4bd6-95ff-40d8677088f6" />
 
 
+<img width="457" height="520" alt="Zrzut ekranu 2025-06-13 195655" src="https://github.com/user-attachments/assets/76be026a-847b-4f5e-8214-503da2ba20a4" />
 
 
 
