@@ -6,24 +6,24 @@ The final result is a highly effective system for host monitoring, alerting, and
 
 # Tools used
 
-AWS – Hosting all EC2 instances
-Splunk – SIEM platform and alert generation
-Sysmon – Log collection on Windows
-Syslog – Log collection on Linux
-Shuffle – Automation playbooks and response handling
-Slack – Message delivery for alerts to SOC analysts
-Invoke-AtomicRedTeam – Environment testing and attack simulation
+AWS – Hosting all EC2 instances  
+Splunk – SIEM platform and alert generation  
+Sysmon – Log collection on Windows  
+Syslog – Log collection on Linux  
+Shuffle – Automation playbooks and response handling  
+Slack – Message delivery for alerts to SOC analysts  
+Invoke-AtomicRedTeam – Environment testing and attack simulation  
 
 # Acquired skills
 
-Hosting VMs using AWS
-Creating and managing a simple Active Directory Domain
-Installing and configuring Splunk for alerting
-Writing custom alert rules in Splunk
-Configuring both Windows and Linux hosts to send logs to Splunk
-Automating parts of incident response using Shuffle (e.g., sending messages to Slack and emails to Gmail with response options)
-Integrating multiple security tools for comprehensive monitoring and protection
-Installing and configuring Sysmon based on specific needs
+Hosting VMs using AWS  
+Creating and managing a simple Active Directory Domain  
+Installing and configuring Splunk for alerting  
+Writing custom alert rules in Splunk  
+Configuring both Windows and Linux hosts to send logs to Splunk  
+Automating parts of incident response using Shuffle (e.g., sending messages to Slack and emails to Gmail with response options)  
+Integrating multiple security tools for comprehensive monitoring and protection  
+Installing and configuring Sysmon based on specific needs  
 
 # Project
 
