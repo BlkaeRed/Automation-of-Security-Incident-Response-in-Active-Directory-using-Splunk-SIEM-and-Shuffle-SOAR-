@@ -137,7 +137,7 @@ Source_Network_Address!=....-> I only want to alert when somebody outside of net
 stats count by .... -> used to extract only relevant information, in other words, who connects, when did they connect and to what host and user
 
 Next, to make it into alert, I presses "Save as->Alert" option
-<img width="945" height="498" alt="obraz" src="https://github.com/user-attachments/assets/9ab3f103-dcd0-4505-9aa4-ad272c2ce2b2" />
+<img width="945" height="600" alt="obraz" src="https://github.com/user-attachments/assets/4dad2fb3-30ad-4e98-b98d-ab6a1c9e25cd" />
 
 
 
