@@ -105,7 +105,7 @@ After that all that was left to do was executin splunk_start binary and go to th
 Next, I downloaded Splunk Add-on for Windows (for better parsing of logs):
 <img width="945" height="422" alt="obraz" src="https://github.com/user-attachments/assets/38294ffe-ac92-498a-866b-37d5c772ef52" />
 
-Last, step was enabling listening port for log transfer purposes:
+Last, step was enabling listening port for log transfer purposes and created hk-domain index:
 <img width="945" height="447" alt="obraz" src="https://github.com/user-attachments/assets/6066b58a-6be9-4212-826f-e09440e8eaa5" />
 
 Now that that's out of the way, I configured both Windows and Linux machines, to forward their logs to Splunk.
@@ -115,7 +115,10 @@ Downloaded Universal Forwarder:
 
 Setup credentials and receiving index:
 <img width="945" height="715" alt="obraz" src="https://github.com/user-attachments/assets/bc445d29-c29a-4ac5-80c7-2ec631fb7fb1" />
-<img width="945" height="715" alt="obraz" src="https://github.com/user-attachments/assets/3c1f8ecf-599c-4d7b-9f73-223c2de6312c" />
+<img width="945" height="745" alt="obraz" src="https://github.com/user-attachments/assets/383656af-75ac-4b5a-8a3b-6ea65df30325" />
+
+Next, I changed the C:\Program Files\SplunkUniversalForwarder\etc\system\local\input.conf to forward Security logs into hkdomain-ad index:
+<img width="433" height="127" alt="obraz" src="https://github.com/user-attachments/assets/dc7a71cb-d4ce-4baf-b763-8277c34eae47" />
 
 
 
