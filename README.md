@@ -54,11 +54,13 @@ Setting up password (becuase of the nature of this project password choosen wasn
 <img width="945" height="689" alt="obraz" src="https://github.com/user-attachments/assets/218951a4-0997-4f0c-a332-24c8c12054a6" />
 Next, thing to do was to pass "Prerequisites check" and install all necessities:
 <img width="945" height="700" alt="obraz" src="https://github.com/user-attachments/assets/2aa2ee03-4443-4571-9990-d9ee00a4675c" />
+
 And after all of that, and after machine restart, the Domain Controller settup was complete.
 
 Next step, was to create a new user in the local domain and configure second Windwows machine to become part of:
 <img width="945" height="663" alt="obraz" src="https://github.com/user-attachments/assets/89eb2306-2da9-4438-a7d8-900c50d5fce1" />
-And similarly to password in Domain Controller for the sake of "ease of use", I choose simple password and "Password never expires" option, in real word scenarios this would be highly discouraged, because of security implications 
+And similarly to password in Domain Controller for the sake of "ease of use", I choose simple password and "Password never expires" option, in real word scenarios this would be highly discouraged, because of security implications
+
 <img width="845" height="738" alt="obraz" src="https://github.com/user-attachments/assets/6fb9c3a8-3f03-4472-aa46-fbb777ad0a52" />
 After that I checked if user was created, and he was:
 <img width="703" height="77" alt="obraz" src="https://github.com/user-attachments/assets/5193d1fd-3067-486e-9787-1feb24555a4e" />
@@ -71,8 +73,10 @@ And in the "System Properties" I changed the "Member of" to my local domain:
 <img width="570" height="320" alt="obraz" src="https://github.com/user-attachments/assets/98d1000d-bc2a-4322-907b-4b29eb1c151d" />
 So, after the restart, the machine is now officaly part of HKdomain.local
 But before I can connect to this machine using newely created user, I needed to change which user are allowed remote access, in "System Properties":
+
 <img width="945" height="836" alt="obraz" src="https://github.com/user-attachments/assets/cbb1e99f-6a6f-4e58-bad6-aa2c669e7757" />
 And after all of that:
+
 <img width="791" height="270" alt="obraz" src="https://github.com/user-attachments/assets/38a6f2ec-404d-4ce1-89bf-40e0c6a3eef3" />
 <img width="945" height="612" alt="obraz" src="https://github.com/user-attachments/assets/d24a4d00-302e-44ae-843c-09030d4538ad" />
 Active Directory is done
