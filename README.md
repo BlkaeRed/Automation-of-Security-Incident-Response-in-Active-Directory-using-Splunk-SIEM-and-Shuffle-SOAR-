@@ -201,17 +201,19 @@ If the SOC analyst chooses to disable the user, Shuffle executes the "Disable Us
 
 After that, all remaining elements are there to give additional message, depending on if SOC analyst decides to disable user or not.
 
-User Attributes block retrieves the current attributes of the targeted user:
+User Attributes block retrieves the current attributes of the targeted user:  
+
 <img width="324" height="439" alt="Zrzut ekranu 2025-06-05 190255" src="https://github.com/user-attachments/assets/200278d9-ce58-4f3f-b82a-920bd462294b" />
 
-A Condition block checks whether the userAccountControl field indicates a disabled account:
+A Condition block checks whether the userAccountControl field indicates a disabled account:  
+
 <img width="319" height="425" alt="Zrzut ekranu 2025-06-05 190306" src="https://github.com/user-attachments/assets/91c01949-9557-4c03-bee0-4790bf227478" />
 <img width="797" height="314" alt="Zrzut ekranu 2025-06-05 190332" src="https://github.com/user-attachments/assets/3cd90537-9961-419b-a60a-76b481dff477" />
 
-If the user was disabled another message is posted to Slack with following text:
+If the user was disabled another message is posted to Slack with following text:  
 <img width="322" height="111" alt="Zrzut ekranu 2025-06-05 190349" src="https://github.com/user-attachments/assets/9789340a-5bf3-4099-b506-99d6d07bf319" />
 
-And this is how it looks in practise:
+And this is how it looks in practise:  
 
 <img width="310" height="50" alt="Zrzut ekranu 2025-06-05 191142" src="https://github.com/user-attachments/assets/49f61264-c70d-4268-8b1c-da005645debe" />
 
