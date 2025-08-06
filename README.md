@@ -42,6 +42,7 @@ After creating all of the machines seen in system diagram, I started working on 
 First I assigned one of the Windows EC2 instances (the one with more recources), as a Domain Controller.
 To do that I used server manager and clicked "Add roles and features":
 <img width="945" height="495" alt="Image" src="https://github.com/user-attachments/assets/d6580d96-2baa-48ea-b171-9a1d9ffc5062" />
+
 Next selected installation type:
 <img width="945" height="668" alt="Image" src="https://github.com/user-attachments/assets/5234c761-459d-4429-83c5-aadc65236b36" />
 And after that, I choose "Active Directory Domain Services" in "Select server roles" panel:
