@@ -1,6 +1,6 @@
 # Introduction
 
-This project involved building an automated system for real-time incident alerting and response across both Windows (specifically Active Directory Domain Controllers and hosts) and Linux environments. It consists of several EC2 instances hosting a Splunk server, a Domain Controller, and two monitored hosts. The system makes use of free and open-source tools, with Splunk serving as the SIEM platform for incident analysis and alert generation and Sysmon and Syslog which are used for detailed log collection. Additional tools include Shuffle, which enables automated responses to alerts, such as sending dedicated messages or emails to a SOC analyst via Slack or Gmail, with option to react to incident via disabling the user. I tested this system against two types of attacks: unauthorized access from an unknown IP address to one of the endpoints, and a potential command-and-control (C2) connection to an attacker’s server, simulated using the Invoke-AtomicRedTeam framework. The end result is highly effective system for monitoring hosts, alerting and reacting to potentional incidents and overall day-to-day work in SOC environment.
+This project involved building an automated system for real-time incident alerting and response across both Windows (specifically Active Directory Domain Controllers and hosts) and Linux environments. It consists of several EC2 instances hosting a Splunk server, a Domain Controller, and two monitored hosts. The system makes use of free and open-source tools, with Splunk serving as the SIEM platform for incident analysis and alert generation and Sysmon and Syslog which are used for detailed log collection. Additional tools include Shuffle, which enables automated responses to alerts, such as sending dedicated messages or emails to a SOC analyst via Slack or Gmail, with option to react to incident via disabling the user. I tested this system against two types of attacks: unauthorized access from an unknown IP address to one of the endpoints, and a potential port scanning, simulated using the Invoke-AtomicRedTeam framework. The end result is highly effective system for monitoring hosts, alerting and reacting to potentional incidents and overall day-to-day work in SOC environment.
 
 # Tools used
 
@@ -94,6 +94,28 @@ And after all of that:
 Active Directory is done
 
 
+## Installing and Configuring Splunk
+
+Next step after configuring Active Directory, was to setup Splunk SIEM and to make all the hosts forward their logs into it.
+First, I downloaded installation package into Linux server and after that I followed official installation tutorial found in Splunk documentation.
+
+After that all that was left to do was executin splunk_start binary and go to the activated instance:
+<img width="945" height="447" alt="obraz" src="https://github.com/user-attachments/assets/237cc04d-93a1-4e68-9ebc-18206aa58813" />
+
+Next, I downloaded Splunk Add-on for Windows (for better parsing of logs):
+<img width="945" height="422" alt="obraz" src="https://github.com/user-attachments/assets/38294ffe-ac92-498a-866b-37d5c772ef52" />
+
+Last, step was enabling listening port for log transfer purposes:
+<img width="945" height="447" alt="obraz" src="https://github.com/user-attachments/assets/6066b58a-6be9-4212-826f-e09440e8eaa5" />
+
+Now that that's out of the way, I configured both Windows and Linux machines, to forward their logs to Splunk.
+To do that on both machines I:
+Downloaded Universal Forwarder:
+<img width="945" height="57" alt="obraz" src="https://github.com/user-attachments/assets/d0a61df7-5d66-46db-81ef-9401a6c5ed2c" />
+
+Setup credentials and receiving index:
+<img width="945" height="715" alt="obraz" src="https://github.com/user-attachments/assets/bc445d29-c29a-4ac5-80c7-2ec631fb7fb1" />
+<img width="945" height="715" alt="obraz" src="https://github.com/user-attachments/assets/3c1f8ecf-599c-4d7b-9f73-223c2de6312c" />
 
 
 
