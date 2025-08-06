@@ -1,3 +1,3 @@
-#Introduction
+# Introduction
 
-This project involved building an automated system for real-time incident alerting and response across Windows and Linux hosts. It's based on free and open-source tool, like Splunk as a SIEM platform, Shuffle for automated alerts and playbook creation and Syslog for additional log creation. All of this was created and hosted on EC2 instances on AWS servers. 
+This project involved building an automated system for real-time incident alerting and response across Windows and Linux hosts. It's composed of free and open-source tools, Splunk as a SIEM platform, incident analysis and alert creation, Sysmon and Syslog for extensive log creation. Additional tools include Shuffle for automated response to alerts like sending decitated message/email to Slack or Gmail of SOC analyst. I tested this system for two attack. First, access for unknown IP address to one of the endpoint and second, potential C2 connection to attacker's server, using execution framework Invoke-AtomicRedTeam.
