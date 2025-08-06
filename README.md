@@ -26,5 +26,5 @@ Installing and configuring Sysmon for specific environmental need
 # Project
 
 ## System Diagram
-This is how the system work looks and works like in practise.
+This is how the system work looks and works like in practise. All telemetries are send to Splunk. After that if alert is triggered, it is send to Shuffle and to both Slack and SOC analyst email. Next, SOC analyst has a choise to either disable the user, which would also generate another message in Slack or do nothing.
 ![Image](https://github.com/user-attachments/assets/f58d0f93-7f00-4d0e-95cc-2ca93c467f37)
