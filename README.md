@@ -100,13 +100,13 @@ Next step after configuring Active Directory, was to setup Splunk SIEM and to ma
 First, I downloaded installation package into Linux server and after that I followed official installation tutorial found in Splunk documentation.
 
 After that all that was left to do was executin splunk_start binary and go to the activated instance:
-<img width="945" height="447" alt="obraz" src="https://github.com/user-attachments/assets/237cc04d-93a1-4e68-9ebc-18206aa58813" />
+<img width="1919" height="907" alt="Zrzut ekranu 2025-06-02 140217" src="https://github.com/user-attachments/assets/521dd201-4faa-42a7-a793-c5419d0f98c9" />
 
-Next, I downloaded Splunk Add-on for Windows (for better parsing of logs):
-<img width="945" height="422" alt="obraz" src="https://github.com/user-attachments/assets/38294ffe-ac92-498a-866b-37d5c772ef52" />
+Next, I downloaded Splunk Add-on for Windows (for better log parsing):
+<img width="1895" height="846" alt="Zrzut ekranu 2025-06-02 140440" src="https://github.com/user-attachments/assets/46f07b6f-ec24-4657-acb7-17af7ce8fec8" />
 
 Last, step was enabling listening port for log transfer purposes and created hk-domain index:
-<img width="945" height="447" alt="obraz" src="https://github.com/user-attachments/assets/6066b58a-6be9-4212-826f-e09440e8eaa5" />
+<img width="1919" height="908" alt="Zrzut ekranu 2025-06-02 140622" src="https://github.com/user-attachments/assets/ff6d30ab-91b1-4e88-8637-5e1a12f45fea" />
 
 Now that that's out of the way, I configured both Windows and Linux machines, to forward their logs to Splunk.
 To do that on both machines I:
