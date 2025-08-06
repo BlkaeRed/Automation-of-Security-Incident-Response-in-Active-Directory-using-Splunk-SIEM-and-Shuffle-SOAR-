@@ -178,12 +178,14 @@ Next is "Alert Notification" used to post the alert notification into Slack, the
 <img width="326" height="741" alt="obraz" src="https://github.com/user-attachments/assets/3d547399-265d-4e1f-b757-3d6efda9ad83" />
 
 And this is the message schema, the $exec.result.* values where extracted by first starting the webhook and activating an alert, after that the parameters where aviable for me to use:
+
 <img width="320" height="200" alt="Zrzut ekranu 2025-06-05 190123" src="https://github.com/user-attachments/assets/04e97ba5-8809-4627-a41b-c72c4ff1e1a4" />
 
 And this is the end result, after the alert has been prokt:
 <img width="848" height="231" alt="obraz" src="https://github.com/user-attachments/assets/9b6594a2-297e-422a-a936-089ff3733c40" />
 
 Next is "Email Notification", that similarly to prevous element, is used to send message after alert, but this time through email and with additional option of action for SOC analyst:
+
 <img width="335" height="559" alt="obraz" src="https://github.com/user-attachments/assets/d0ccb9c6-fdf7-4497-a2c2-7a16da6281f3" />
 
 
