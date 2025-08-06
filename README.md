@@ -107,6 +107,8 @@ Next, I downloaded Splunk Add-on for Windows (for better log parsing):
 
 Last, step was enabling listening port for log transfer purposes and created hk-domain index:
 <img width="1919" height="908" alt="Zrzut ekranu 2025-06-02 140622" src="https://github.com/user-attachments/assets/ff6d30ab-91b1-4e88-8637-5e1a12f45fea" />
+<img width="1894" height="154" alt="Zrzut ekranu 2025-06-02 151443" src="https://github.com/user-attachments/assets/23d184ac-38ad-40c8-8eeb-b2253b650b99" />
+
 
 Now that that's out of the way, I configured both Windows and Linux machines, to forward their logs to Splunk.
 To do that on both machines I:
@@ -117,8 +119,28 @@ Setup credentials and receiving index:
 <img width="945" height="715" alt="obraz" src="https://github.com/user-attachments/assets/bc445d29-c29a-4ac5-80c7-2ec631fb7fb1" />
 <img width="945" height="745" alt="obraz" src="https://github.com/user-attachments/assets/383656af-75ac-4b5a-8a3b-6ea65df30325" />
 
-Next, I changed the C:\Program Files\SplunkUniversalForwarder\etc\system\local\input.conf to forward Security logs into hkdomain-ad index:
+Next, I changed the C:\Program Files\SplunkUniversalForwarder\etc\system\local\input.conf to forward Security logs into hkdomain-ad index and SplunkForward properties to Local System account:
 <img width="433" height="127" alt="obraz" src="https://github.com/user-attachments/assets/dc7a71cb-d4ce-4baf-b763-8277c34eae47" />
+<img width="789" height="908" alt="obraz" src="https://github.com/user-attachments/assets/97a3eb8c-e524-4a4d-aa56-225d5943e872" />
+
+And to check if everything works, I looked at hkdomain-ad index in Splunk:
+<img width="1915" height="799" alt="Zrzut ekranu 2025-06-02 151550" src="https://github.com/user-attachments/assets/c3826724-cb25-490e-8df8-c3880fb89e92" />
+<img width="1105" height="338" alt="Zrzut ekranu 2025-06-02 152931" src="https://github.com/user-attachments/assets/3beaa0a7-4374-422f-aacc-93bc0a654b77" />
+
+Now to create alert unknown/unauthorized access I used this query and simulated unauthorized access using VPN:
+<img width="1918" height="382" alt="obraz" src="https://github.com/user-attachments/assets/6a309e55-0f20-4cb7-84c1-58687a276014" />
+
+Explaination of alert:
+Event code 4624 represents succesful login->what I wanted to detect 
+Logon_Type 7 or 10 represent either logging back into already logged session (7) or connecting remotly to host (10)-> both can be seen during remote connections
+Source_Network_Address!=....-> I only want to alert when somebody outside of network (blocked addresses are my personal public IP) connects, "-" is there to only check connections with source address present
+stats count by .... -> used to extract only relevant information, in other words, who connects, when did they connect and to what host and user
+
+Next, to make it into alert, I presses "Save as->Alert" option
+<img width="945" height="498" alt="obraz" src="https://github.com/user-attachments/assets/9ab3f103-dcd0-4505-9aa4-ad272c2ce2b2" />
+
+
+
 
 
 
