@@ -164,11 +164,6 @@ Last thing do to was checking if the setup works, so I used query for index hk-l
 
 And it worked so, initial Splunk setup is done.
 
-<img width="457" height="520" alt="Zrzut ekranu 2025-06-13 195655" src="https://github.com/user-attachments/assets/12041c83-d34f-4bd6-95ff-40d8677088f6" />
-
-
-<img width="457" height="520" alt="Zrzut ekranu 2025-06-13 195655" src="https://github.com/user-attachments/assets/76be026a-847b-4f5e-8214-503da2ba20a4" />
-
 
 
 
