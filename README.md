@@ -107,6 +107,7 @@ Lastly, I enabled the listening port for log transfers and created the hk-domain
 
 Now that everything was set, I configured both Windows and Linux machines to forward logs to Splunk.
 On both machines:
+
 Downloaded Universal Forwarder:
 <img width="945" height="57" alt="obraz" src="https://github.com/user-attachments/assets/d0a61df7-5d66-46db-81ef-9401a6c5ed2c" />
 
@@ -115,10 +116,12 @@ Setup credentials and receiving index:
 <img width="945" height="745" alt="obraz" src="https://github.com/user-attachments/assets/383656af-75ac-4b5a-8a3b-6ea65df30325" />
 
 Then, I modified input.conf in C:\Program Files\SplunkUniversalForwarder\etc\system\local\ to forward Security logs into the hkdomain-ad index and changed SplunkForwarder service properties to use the Local System account:
+
 <img width="433" height="127" alt="obraz" src="https://github.com/user-attachments/assets/dc7a71cb-d4ce-4baf-b763-8277c34eae47" />
 <img width="789" height="908" alt="obraz" src="https://github.com/user-attachments/assets/97a3eb8c-e524-4a4d-aa56-225d5943e872" />
 
-To verify everything worked, I searched for logs in the hkdomain-ad index:<img width="1915" height="799" alt="Zrzut ekranu 2025-06-02 151550" src="https://github.com/user-attachments/assets/c3826724-cb25-490e-8df8-c3880fb89e92" />
+To verify everything worked, I searched for logs in the hkdomain-ad index:
+<img width="1915" height="799" alt="Zrzut ekranu 2025-06-02 151550" src="https://github.com/user-attachments/assets/c3826724-cb25-490e-8df8-c3880fb89e92" />
 <img width="1105" height="338" alt="Zrzut ekranu 2025-06-02 152931" src="https://github.com/user-attachments/assets/3beaa0a7-4374-422f-aacc-93bc0a654b77" />
 
 Now to create alert unknown/unauthorized access I used this query and simulated unauthorized access using VPN:
@@ -143,14 +146,16 @@ Last thing to do was to check if the alerts trigger when needed and fortunatly t
 <img width="1918" height="361" alt="Zrzut ekranu 2025-06-02 161447" src="https://github.com/user-attachments/assets/eceefe67-cc65-482a-bf29-3928b8db73d1" />
 
 Next, I configured SplunkForwarder for my Linux server:
-I mostly used this blog for help with configuration https://iritt.medium.com/setting-up-the-splunk-universal-forwarder-on-kali-linux-for-your-cybersecurity-home-lab-c153d19215dc
+I mostly used this blog for help with configuration [Setting up the splunk universal forwarder on kali linux](https://iritt.medium.com/setting-up-the-splunk-universal-forwarder-on-kali-linux-for-your-cybersecurity-home-lab-c153d19215dc)
 
 In the same way as hkdomain-ad index, I created hk-linux index used for all logs from my Linux server
 Next I installed the SplunkForwarder, started it and added my Splunk server using as a forward server
 After that, I added inputs.conf into /opt/splunkforwarder/etc/system/local/ directory with following contents:
+
 <img width="378" height="114" alt="Zrzut ekranu 2025-06-09 150519" src="https://github.com/user-attachments/assets/c1eda50b-2cf0-4f5c-bd36-33a3357bdeae" />
 
 And this is content of /opt/splunkforwarder/etc/system/local/outputs.conf after adding the forward-server:
+
 <img width="489" height="180" alt="Zrzut ekranu 2025-06-09 150538" src="https://github.com/user-attachments/assets/670a8e47-57a9-4595-91cf-0c608d01bd7c" />
 
 Last thing do to to check if the setup works, so I used query for index hk-linux:
@@ -172,6 +177,7 @@ The first element in the playbook is a Webhook trigger named Splunk Alert. Its r
 The URL generated here was used during Splunk alert configuration (as described in the previous section of the project).
 
 The next step, "Alert Notification", posts a message to a designated Slack channel. The channel ID was taken directly from the Slack URL.
+
 <img width="326" height="741" alt="obraz" src="https://github.com/user-attachments/assets/3d547399-265d-4e1f-b757-3d6efda9ad83" />
 
 The values in $exec.result.* were discovered after manually triggering an alert while the webhook was active. Shuffle captured and parsed the payload automatically:
@@ -206,6 +212,7 @@ If the user was disabled another message is posted to Slack with following text:
 <img width="322" height="111" alt="Zrzut ekranu 2025-06-05 190349" src="https://github.com/user-attachments/assets/9789340a-5bf3-4099-b506-99d6d07bf319" />
 
 And this is how it looks in practise:
+
 <img width="310" height="50" alt="Zrzut ekranu 2025-06-05 191142" src="https://github.com/user-attachments/assets/49f61264-c70d-4268-8b1c-da005645debe" />
 
 ## Adding Sysmon and integrating it into Shuffle playbook
@@ -213,7 +220,7 @@ And this is how it looks in practise:
 To go beyond the tutorial from MyDFIR's YouTube series, I implemented Sysmon-based detection to monitor suspicious network behavior, particularly potential C2 (Command and Control) communication.
 
 So first I installed Sysmon on both Windows Machines.
-Next I updated configuration file to one found here https://github.com/SwiftOnSecurity/sysmon-config
+Next I updated configuration file to one found here [SwiftOnSecurity sysmon-config](https://github.com/SwiftOnSecurity/sysmon-config)
 
 To make sure Sysmon logs were transferred to Splunk, I added this to the inputs.conf file:
 <img width="534" height="86" alt="obraz" src="https://github.com/user-attachments/assets/795a3344-9c33-4a5b-854a-d857491ad8b4" />
@@ -223,9 +230,11 @@ After that, I restarted the services and checked Splunk:
 <img width="802" height="398" alt="Zrzut ekranu 2025-06-08 211624" src="https://github.com/user-attachments/assets/393d4b93-8486-4614-8828-d97fecc11f53" />
 
 However, there was an issue: there was too much noise. Sysmon generated a significant amount of useless logs related to SplunkForwarder activity:
+
 <img width="839" height="795" alt="Zrzut ekranu 2025-06-08 205949" src="https://github.com/user-attachments/assets/ed09d669-4f16-44e2-8efe-9de5bf003400" />
 
 To stop that, I added the following lines to the Sysmon configuration file (in the <ProcessCreate onmatch="exclude"> section):
+
 <img width="793" height="73" alt="Zrzut ekranu 2025-06-08 210419" src="https://github.com/user-attachments/assets/8bc7c126-04bb-4079-8b25-44fe6b6dd20d" />
 <img width="1032" height="52" alt="Zrzut ekranu 2025-06-08 210502" src="https://github.com/user-attachments/assets/86507d07-eff5-476f-af5f-89e1576778b5" />
 
@@ -235,6 +244,7 @@ After that was taken care of, I checked how normal traffic looks and specificall
 
 A few of these ports were probably one-time occurrences related to other activities, but now I had a better idea of what destination ports "normal" traffic uses.
 So, to detect potential C2 communication, I created this query:
+
 <img width="1660" height="136" alt="Zrzut ekranu 2025-06-09 222541" src="https://github.com/user-attachments/assets/cf63b7fc-06b8-44fa-8325-a4d4af7a8a6c" />
 
 Next, I set up a simple three-part workflow in Shuffle to alert a SOC analyst about this potential issue:
@@ -244,7 +254,7 @@ As before, I created an alert from this query called "HKdomain-potential-C2-comm
 <img width="866" height="604" alt="Zrzut ekranu 2025-06-09 222450" src="https://github.com/user-attachments/assets/18b6e568-0ce1-4093-899b-685e5ab7177a" />
 
 After all of that was set up, I simulated this malicious activity by activating a simple HTTP server on a Linux machine using python -m http.server on port 8080.
-Then I used Invoke-AtomicRedTeam to start the communication — although, to be fair, I could have just used a browser. But I wanted to experiment with a different tool.
+Then I used Invoke-AtomicRedTeam to start the communication with T1041-1 tets, although, to be fair, I could have just used a browser. But I wanted to experiment with a different tool.
 Here’s the result:
 
 <img width="618" height="247" alt="Zrzut ekranu 2025-06-09 223523" src="https://github.com/user-attachments/assets/d104d338-75d8-410d-a6e5-e221abefbc90" />
@@ -254,8 +264,12 @@ The alert worked.
 ## Summary
 This project involved building an automated incident detection and response system across Windows (Active Directory) and Linux environments using Splunk as the SIEM, Shuffle for automation, and a variety of log sources (Sysmon, Syslog) hosted on AWS EC2 instances; the system detects attacks (e.g., port scans, unauthorized access), alerts SOC analysts via Slack and Gmail, and offers automated response options like disabling user accounts, resulting in an integrated, cloud-based SOC solution tested with Atomic Red Team simulations.
 
-
-
-
-
-
+## Sources
+[Splunk Documentation](https://docs.splunk.com/Documentation/Splunk)   
+[Splunk Universal Forwarder Documentation ](https://docs.splunk.com/Documentation/Forwarder)  
+[Shuffle Documentation](https://shuffler.io/docs/about)  
+[MyDfir](https://www.youtube.com/@MyDFIR)  
+[Sysmon Documentation](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)  
+[SwiftOnSecurity sysmon-config](https://github.com/SwiftOnSecurity/sysmon-config)  
+[Setting up the splunk universal forwarder on kali linux](https://iritt.medium.com/setting-up-the-splunk-universal-forwarder-on-kali-linux-for-your-cybersecurity-home-lab-c153d19215dc)  
+[Invoke-AtomicRed](https://github.com/redcanaryco/invoke-atomicredteam/wiki/Installing-Invoke-AtomicRedTeam)
