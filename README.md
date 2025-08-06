@@ -87,6 +87,7 @@ But before I can connect to this machine using newely created user, I needed to 
 <img width="945" height="836" alt="obraz" src="https://github.com/user-attachments/assets/cbb1e99f-6a6f-4e58-bad6-aa2c669e7757" />
 
 And after all of that:
+
 <img width="791" height="270" alt="obraz" src="https://github.com/user-attachments/assets/38a6f2ec-404d-4ce1-89bf-40e0c6a3eef3" />
 <img width="945" height="612" alt="obraz" src="https://github.com/user-attachments/assets/d24a4d00-302e-44ae-843c-09030d4538ad" />
 
